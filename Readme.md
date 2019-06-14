@@ -18,9 +18,9 @@ resource "aws_launch_configuration" "example" {
 }
 
 module "example_asg_tags" {
-  source  = "github.com/rhythmictech/terraform-asg-tag-transform?ref=1.0.0"
+  source  = "github.com/rhythmictech/terraform-asg-tag-transform?ref=0.1.0"
   tag_map = merge(
-    local.tags,
+    "${local.tags}",
     {
       Name = "example-asg"
     }
@@ -32,7 +32,7 @@ resource "aws_autoscaling_group" "example" {
   max_size             = 1
   min_size             = 1
   launch_configuration = "${aws_launch_configuration.example.name}"
-  tags                 = module.example_asg_tags.tag_list
+  tags                 = "${module.example_asg_tags.tag_list}"
 }
 ```
 
@@ -52,12 +52,12 @@ resource "aws_launch_configuration" "example" {
 }
 
 module "example_asg_tags_propagated" {
-  source  = "github.com/rhythmictech/terraform-asg-tag-transform?ref=1.0.0"
-  tag_map = local.tags
+  source  = "github.com/rhythmictech/terraform-asg-tag-transform?ref=0.1.0"
+  tag_map = "${local.tags}"
 }
 
 module "example_asg_tags_not_propagated" {
-  source  = "github.com/rhythmictech/terraform-asg-tag-transform?ref=1.0.0"
+  source  = "github.com/rhythmictech/terraform-asg-tag-transform?ref=0.1.0"
   propagate_at_launch = false
   tag_map = {
     Name = "example-asg"
@@ -71,8 +71,8 @@ resource "aws_autoscaling_group" "example" {
   launch_configuration = "${aws_launch_configuration.example.name}"
   
   tags = concat(
-    module.example_asg_tags_propagated.tag_list,
-    module.example_asg_tags_not_propagated.tag_list
+    "${module.example_asg_tags_propagated.tag_list}",
+    "${module.example_asg_tags_not_propagated.tag_list}"
   )
 }
 ```
