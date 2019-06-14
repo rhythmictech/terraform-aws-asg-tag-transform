@@ -10,6 +10,8 @@ variable "propagate_at_launch" {
 }
 
 locals {
+  # list of tag keys
   keys   = keys(var.tag_map)
+  # list of tag values
   values = values(var.tag_map)
 }
