@@ -1,4 +1,4 @@
-# terraform-asg-tag-transform
+# terraform-aws-asg-tag-transform
 Data-only module that transforms a tag map as used by most AWS resources into a list of tags as required by `aws_autoscaling_group`
 
 ## Example Usage
@@ -18,7 +18,7 @@ resource "aws_launch_configuration" "example" {
 }
 
 module "example_asg_tags" {
-  source  = "github.com/rhythmictech/terraform-asg-tag-transform?ref=0.1.0"
+  source  = "github.com/rhythmictech/terraform-aws-asg-tag-transform?ref=0.1.0"
   tag_map = merge(
     "${local.tags}",
     {
@@ -52,12 +52,12 @@ resource "aws_launch_configuration" "example" {
 }
 
 module "example_asg_tags_propagated" {
-  source  = "github.com/rhythmictech/terraform-asg-tag-transform?ref=0.1.0"
+  source  = "github.com/rhythmictech/terraform-aws-asg-tag-transform?ref=0.1.0"
   tag_map = "${local.tags}"
 }
 
 module "example_asg_tags_not_propagated" {
-  source  = "github.com/rhythmictech/terraform-asg-tag-transform?ref=0.1.0"
+  source  = "github.com/rhythmictech/terraform-aws-asg-tag-transform?ref=0.1.0"
   propagate_at_launch = false
   tag_map = {
     Name = "example-asg"
