@@ -1,0 +1,15 @@
+#  Local .terraform directories
+**/.terraform/*
+
+# .tfstate files
+*.tfstate
+*.tfstate.*
+
+# override files
+override.tf*
+*_override.tf*
+
+# temp files
+**/tmp/**
+
+.DS_Store
