@@ -1,4 +1,4 @@
-# terraform-asg-tag-transform
+# terraform-aws-asg-tag-transform
 Data-only module that transforms a tag map as used by most AWS resources into a list of tags as required by `aws_autoscaling_group`
 
 ## Example Usage
