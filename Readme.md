@@ -18,7 +18,7 @@ resource "aws_launch_configuration" "example" {
 }
 
 module "example_asg_tags" {
-  source  = "github.com/rhythmictech/terraform-asg-tag-transform?ref=1.0.1"
+  source  = "github.com/rhythmictech/terraform-aws-asg-tag-transform?ref=1.0.1"
   tag_map = merge(
     local.tags,
     {
@@ -52,7 +52,7 @@ resource "aws_launch_configuration" "example" {
 }
 
 module "example_asg_tags_propagated" {
-  source  = "github.com/rhythmictech/terraform-asg-tag-transform?ref=1.0.1"
+  source  = "github.com/rhythmictech/terraform-aws-asg-tag-transform?ref=1.0.1"
   tag_map = local.tags
 }
 
