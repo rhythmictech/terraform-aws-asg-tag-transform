@@ -18,7 +18,6 @@ resource "aws_launch_configuration" "example" {
 }
 
 module "example_asg_tags" {
-  module "asg-tag-transform" {
   source  = "rhythmictech/asg-tag-transform/aws"
   version = "1.0.0"
   tag_map = merge(
